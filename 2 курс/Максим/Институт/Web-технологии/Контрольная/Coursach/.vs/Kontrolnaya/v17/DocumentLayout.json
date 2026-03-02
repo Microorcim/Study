@@ -1,0 +1,77 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\sirqu\\source\\repos\\Coursach\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{3CCDDD4D-50AC-4336-B0D2-CE0B3796162F}|Coursach\\Kontrolnaya.csproj|c:\\users\\sirqu\\source\\repos\\coursach\\coursach\\pages\\listofwatches.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{3CCDDD4D-50AC-4336-B0D2-CE0B3796162F}|Coursach\\Kontrolnaya.csproj|solutionrelative:coursach\\pages\\listofwatches.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3CCDDD4D-50AC-4336-B0D2-CE0B3796162F}|Coursach\\Kontrolnaya.csproj|c:\\users\\sirqu\\source\\repos\\coursach\\coursach\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3CCDDD4D-50AC-4336-B0D2-CE0B3796162F}|Coursach\\Kontrolnaya.csproj|solutionrelative:coursach\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3CCDDD4D-50AC-4336-B0D2-CE0B3796162F}|Coursach\\Kontrolnaya.csproj|c:\\users\\sirqu\\source\\repos\\coursach\\coursach\\data\\watch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3CCDDD4D-50AC-4336-B0D2-CE0B3796162F}|Coursach\\Kontrolnaya.csproj|solutionrelative:coursach\\data\\watch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e506b91c-c606-466a-90a9-123d1d1e12b3}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ListOfWatches.cshtml",
+              "DocumentMoniker": "C:\\Users\\sirqu\\source\\repos\\Coursach\\Coursach\\Pages\\ListOfWatches.cshtml",
+              "RelativeDocumentMoniker": "Coursach\\Pages\\ListOfWatches.cshtml",
+              "ToolTip": "C:\\Users\\sirqu\\source\\repos\\Coursach\\Coursach\\Pages\\ListOfWatches.cshtml",
+              "RelativeToolTip": "Coursach\\Pages\\ListOfWatches.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-02-18T12:46:35.077Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ApplicationDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\sirqu\\source\\repos\\Coursach\\Coursach\\Data\\ApplicationDbContext.cs",
+              "RelativeDocumentMoniker": "Coursach\\Data\\ApplicationDbContext.cs",
+              "ToolTip": "C:\\Users\\sirqu\\source\\repos\\Coursach\\Coursach\\Data\\ApplicationDbContext.cs",
+              "RelativeToolTip": "Coursach\\Data\\ApplicationDbContext.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-02-16T20:34:17.612Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Watch.cs",
+              "DocumentMoniker": "C:\\Users\\sirqu\\source\\repos\\Coursach\\Coursach\\Data\\Watch.cs",
+              "RelativeDocumentMoniker": "Coursach\\Data\\Watch.cs",
+              "ToolTip": "C:\\Users\\sirqu\\source\\repos\\Coursach\\Coursach\\Data\\Watch.cs",
+              "RelativeToolTip": "Coursach\\Data\\Watch.cs",
+              "ViewState": "AQIAAA4AAAAAAAAAAAA7wCAAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-02-16T20:29:01.413Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

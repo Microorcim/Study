@@ -1,0 +1,109 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="row gy-5">
+    <div class="col-2"></div>
+    <div class="col-8">
+        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="cards-wrapper row row-cols-1 row-cols-md-3 g-4">
+                        <div class="card col">
+                            <img src="data:image;base64,@System.Convert.ToBase64String(Model.FavoriteWathes[0].Bytes)" height="150" />
+                            <div class="card-body">
+                                <h5 class="card-title">@Html.DisplayFor(model => model.FavoriteWathes[0].ModelName)</h5>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">@Html.DisplayFor(model => model.FavoriteWathes[0].Brand.Name)</li>
+                                <li class="list-group-item">@Html.DisplayFor(model => model.FavoriteWathes[0].Price)</li>
+                            </ul>
+                            <a class="btn btn-info" asp-page="./WatchDetail" asp-route-id="@Model.FavoriteWathes[0].Id">Детали</a>
+                        </div>
+                        <div class="card col">
+                            <img src="data:image;base64,@System.Convert.ToBase64String(Model.FavoriteWathes[1].Bytes)" height="150" />
+                            <div class="card-body">
+                                <h5 class="card-title">@Html.DisplayFor(model => model.FavoriteWathes[1].ModelName)</h5>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">@Html.DisplayFor(model => model.FavoriteWathes[1].Brand.Name)</li>
+                                <li class="list-group-item">@Html.DisplayFor(model => model.FavoriteWathes[1].Price)</li>
+                            </ul>
+                            <a class="btn btn-info" asp-page="./WatchDetail" asp-route-id="@Model.FavoriteWathes[1].Id">Детали</a>
+                        </div>
+                        <div class="card col">
+                            <img src="data:image;base64,@System.Convert.ToBase64String(Model.FavoriteWathes[2].Bytes)" height="150" />
+                            <div class="card-body">
+                                <h5 class="card-title">@Html.DisplayFor(model => model.FavoriteWathes[2].ModelName)</h5>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">@Html.DisplayFor(model => model.FavoriteWathes[2].Brand.Name)</li>
+                                <li class="list-group-item">@Html.DisplayFor(model => model.FavoriteWathes[2].Price)</li>
+                            </ul>
+                            <a class="btn btn-info" asp-page="./WatchDetail" asp-route-id="@Model.FavoriteWathes[2].Id">Детали</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="cards-wrapper row row-cols-1 row-cols-md-3 g-4">
+                        <div class="card col">
+                            <img src="data:image;base64,@System.Convert.ToBase64String(Model.FavoriteWathes[3].Bytes)" height="150" />
+                            <div class="card-body">
+                                <h5 class="card-title">@Html.DisplayFor(model => model.FavoriteWathes[3].ModelName)</h5>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">@Html.DisplayFor(model => model.FavoriteWathes[3].Brand.Name)</li>
+                                <li class="list-group-item">@Html.DisplayFor(model => model.FavoriteWathes[3].Price)</li>
+                            </ul>
+                            <a class="btn btn-info" asp-page="./WatchDetail" asp-route-id="@Model.FavoriteWathes[3].Id">Детали</a>
+                        </div>
+                        <div class="card col">
+                            <img src="data:image;base64,@System.Convert.ToBase64String(Model.FavoriteWathes[4].Bytes)" height="150" />
+                            <div class="card-body">
+                                <h5 class="card-title">@Html.DisplayFor(model => model.FavoriteWathes[4].ModelName)</h5>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">@Html.DisplayFor(model => model.FavoriteWathes[4].Brand.Name)</li>
+                                <li class="list-group-item">@Html.DisplayFor(model => model.FavoriteWathes[4].Price)</li>
+                            </ul>
+                            <a class="btn btn-info" asp-page="./WatchDetail" asp-route-id="@Model.FavoriteWathes[4].Id">Детали</a>
+                        </div>
+                        <div class="card col">
+                            <img src="data:image;base64,@System.Convert.ToBase64String(Model.FavoriteWathes[5].Bytes)" height="150" />
+                            <div class="card-body">
+                                <h5 class="card-title">@Html.DisplayFor(model => model.FavoriteWathes[5].ModelName)</h5>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">@Html.DisplayFor(model => model.FavoriteWathes[5].Brand.Name)</li>
+                                <li class="list-group-item">@Html.DisplayFor(model => model.FavoriteWathes[5].Price)</li>
+                            </ul>
+                            <a class="btn btn-info" asp-page="./WatchDetail" asp-route-id="@Model.FavoriteWathes[5].Id">Детали</a>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev btn-info" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next btn-info" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+    </div> 
+    <div class="col-2"></div>
+    <div class="col-12">
+        <h3>О нас</h3>
+        <p class="lead">
+            На протяжении 23 лет наша компания занимает лидирующие позиции по продаже оригинальных наручных часов в России. В нашем ассортименте более 20 000 моделей популярных брендов – от премиальных швейцарских до демократичных японских, немецких и российских производителей. Также у нас представлен огромный выбор ювелирных изделий: золотые и серебряные украшения от более 100 известных марок – кольца, серьги, браслеты и многое другое.
+            Приходите в магазины нашей розничной сети и делайте покупки с комфортом: наши консультанты – настоящие эксперты в своем деле и всегда помогут определиться с выбором. Или закажите сразу несколько понравившихся моделей на сайте – с финальным выбором вы сможете определиться на месте - и наша курьерская служба доставит их бесплатно в удобное для вас время. Какой бы способ покупки вы ни выбрали, мы гарантируем только оригинальные товары, самые низкие цены и премиальный сервис.
+        </p>
+    </div>
+    <div class="col-12">
+        <h3>Как до нас добраться</h3>
+        <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A571493434ed846a02163a4689b7dbb4efbdb0a3e85d83e1256f898ae9abade6f&amp;width=500&amp;height=400&amp;lang=ru_RU&amp;scroll=true"></script>
+    </div>
+</div>

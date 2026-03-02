@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+Z:/C++/Ilia/Laba2/laba2.cpp
+iostream
+-
+vector
+-
+cstring
+-
+fstream
+-
+Windows.h
+-
+

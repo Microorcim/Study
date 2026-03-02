@@ -1,0 +1,71 @@
+﻿@page
+@model Coursach.Pages.WatchDetailModel
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@{
+    ViewData["Title"] = $"Детали {@Model.Watch.ModelName}";
+}
+
+<div>
+    <a asp-page="./ListOfWatches">К списку товаров</a>
+</div>
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col-5">
+        <img src="data:image;base64,@System.Convert.ToBase64String(Model.Watch.Bytes)" height="300" />
+    </div>
+    <div class="col">
+        <p>Часы @Html.DisplayFor(model => model.Watch.Brand.Name) @Html.DisplayFor(model => model.Watch.ModelName)</p>
+        <p>@Html.DisplayFor(model => model.Watch.Genre)</p>
+        <p>@Html.DisplayFor(model => model.Watch.Price) руб.</p>
+        @if (SignInManager.IsSignedIn(User))
+        {
+            <form method="post">
+                <input type="submit" class="btn btn-info" value="Купить" asp-page-handler="AddToCart" asp-route-id="@Model.Watch.Id" />
+            </form>
+        }
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-1"></div>
+    <div class="col-5">
+        <p>
+            @Html.DisplayFor(model => model.Watch.Description)
+        </p>
+    </div>
+    <div class="col-6">
+        <dl class="row">
+            <dt class="col-sm-3">Страна</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.Watch.Country.Name)</dd>
+            <dt class="col-sm-3">Стиль</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.Watch.Style.Name)</dd>
+            <dt class="col-sm-3">Механизм</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.Watch.Mechanism)</dd>
+            <dt class="col-sm-3">Тип стекла</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.Watch.GlassType.Name)</dd>
+            <dt class="col-sm-3">Защита от воды</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.Watch.WaterResistant.Name)</dd>
+            <dt class="col-sm-3">Материал корпуса</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.Watch.CaseMaterial.Name)</dd>
+            <dt class="col-sm-3">Форма корпуса</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.Watch.CaseForm.Name)</dd>
+            <dt class="col-sm-3">Размер корпуса</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.Watch.CaseSize.Name)</dd>
+            <dt class="col-sm-3">Цвет корпуса</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.Watch.CaseColor.Name)</dd>
+            <dt class="col-sm-3">Циферблат</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.Watch.ClockFace.Name)</dd>
+            <dt class="col-sm-3">Тип цифр</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.Watch.NumberType.Name)</dd>
+            <dt class="col-sm-3">Подсветка</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.Watch.Backlight.Name)</dd>
+            <dt class="col-sm-3">Тип браслета</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.Watch.Bracelet.Name)</dd>
+            <dt class="col-sm-3">Цвет браслета</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.Watch.BraceletColor.Name)</dd>
+        </dl>
+    </div>
+</div>

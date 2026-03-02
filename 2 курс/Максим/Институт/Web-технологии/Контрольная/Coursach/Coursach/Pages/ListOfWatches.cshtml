@@ -1,0 +1,28 @@
+﻿@page
+@model Coursach.Pages.ListOfWatchesModel
+
+@{
+    ViewData["Title"] = "Товары";
+}
+
+<h1>Наши товары</h1>
+
+<div class="row row-cols-1 row-cols-md-4 g-4">
+    @foreach (var item in Model.Watch)
+    {
+        <div class="col">
+            <div class="card">
+                <img src="data:image;base64,@System.Convert.ToBase64String(item.Bytes)" height="300" />
+                <div class="card-body">
+                    <h5 class="card-title">@Html.DisplayFor(modelItem => item.ModelName)</h5>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">@Html.DisplayFor(modelItem => item.Brand.Name)</li>
+                    <li class="list-group-item">@Html.DisplayFor(modelItem => item.Price)</li>
+                </ul>
+                <a class="btn btn-info" asp-page="./WatchDetail" asp-route-id="@item.Id">Детали</a>
+            </div>
+        </div>
+    }
+</div>
+

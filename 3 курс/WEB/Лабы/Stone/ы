@@ -1,0 +1,30 @@
+            <div class="product-card">
+                <img src="images/stone4.png" alt="Камень 4">
+                <p>Цена: 1100 руб.</p>
+                <a href="catalog.html">Подробнее</a>
+            </div>
+            <div class="product-card">
+                <img src="images/stone5.jfif" alt="Камень 5">
+                <p>Цена: 1300 руб.</p>
+                <a href="catalog.html">Подробнее</a>
+            </div>
+            <div class="product-card">
+                <img src="images/stone6.jfif" alt="Камень 6">
+                <p>Цена: 950 руб.</p>
+                <a href="catalog.html">Подробнее</a>
+            </div>
+            <div class="product-card">
+                <img src="images/stone7.jpg" alt="Камень 7">
+                <p>Цена: 1400 руб.</p>
+                <a href="catalog.html">Подробнее</a>
+            </div>
+            <div class="product-card">
+                <img src="images/stone8.jfif" alt="Камень 8">
+                <p>Цена: 1250 руб.</p>
+                <a href="catalog.html">Подробнее</a>
+            </div>
+            <div class="product-card">
+                <img src="images/stone9.jfif" alt="Камень 9">
+                <p>Цена: 1150 руб.</p>
+                <a href="catalog.html">Подробнее</a>
+            </div>

@@ -1,0 +1,184 @@
+/* Хеддер */
+div.head {
+    max-height: 100px;
+    min-height: 5rem;
+    margin-left: 200px;
+    margin-right: 200px;
+    display: flex;
+    align-items: center;
+}
+
+.headimage {
+    background-image: url(images/45123202_9121424.jpg);
+    background-position: top center;
+    background-size: cover;
+    width: 400px;
+    height: 100px;
+    display: flex;
+    margin-left: auto;
+}
+
+img.logoimg {
+    width: 10%;
+    height: 10%;
+    min-width: 5%;
+    min-height: 5%;
+    justify-content: left;
+    max-height: 100px;
+    max-width: 100px;
+    align-items: center;
+}
+
+.logoName {
+    font-size: 3rem;
+    display: flex;
+    margin-left: 50px;
+    font-family: Montserrat, sans-serif !important;
+    color: #404040;
+    text-decoration: none;
+    align-items: center;
+}
+
+.navText {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+}
+
+.navHref {
+    display: flex;
+    justify-content: end;
+    font-size: 2rem;
+    justify-content: right;
+    padding-left: 20px;
+    text-decoration: none;
+    color: #404040;
+}
+
+.navHref:hover {
+    display: flex;
+    justify-content: end;
+    font-size: 2rem;
+    justify-content: right;
+    padding-left: 20px;
+    text-decoration: none;
+    color: #000000;
+}
+
+body {
+    margin: 0%;
+}
+
+/*--------------------------------------*/
+
+/* маин */
+h1.ha1 {
+    text-align: center;
+    font-weight: 400;
+    font-size: 5rem;
+    margin-top: 20px;
+    font-family: Roboto, sans-serif;
+}
+
+div.razdel{
+    background-color: #c2c8d6;
+    color: #ffffff;
+    text-align: center;
+
+    margin-top: 20px;
+    font-family: Montserrat, sans-serif !important;
+}
+
+h2 {
+    text-align: center;
+    font-weight: 400;
+    font-size: 3rem;
+    margin-top: 0px;
+    font-family: Roboto, sans-serif;
+}
+
+div.card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 50%;
+}
+
+div.PhotoConteiner {
+    max-width: 35%;
+    max-height: 35%;
+    min-width: 35%;
+    min-height: 35%;
+    align-items: center;
+
+}
+
+img.mainPhoto {
+    width: 100%;
+    height: 100%;
+}
+
+p.text {
+    text-align: center;
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    line-height: 1.8;
+    font-family: 'Open Sans', sans-serif;
+}
+
+p.CardText {
+    text-align: center;
+    font-size: 1.2rem;
+    margin-bottom: 25px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+div.body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+    min-height: 300px;
+}
+
+a.CardButton {
+    background-color: #ecf0f9;
+    padding: 10px 30px;
+    text-decoration: none;
+    color: #000000;
+    font-size: 1rem;
+    letter-spacing: 3px;
+    font-weight: 700;
+    font-family: Roboto, sans-serif;
+    margin-top: 20px;
+}
+
+a.CardButton:hover {
+    background-color: #c2c8d6;
+}
+
+a.CardButton:active {
+    background-color: #bcc9e7;
+}
+
+/*--------------------------------------*/
+
+/* Футтер */
+div.footer {
+    max-height: 100px;
+    min-height: 14rem;
+    margin-left: 20%;
+    margin-right: 20%;
+    display: flex;
+    align-items: center;
+}
+
+.footerText {
+    color: #ffffff;
+    text-align: center;
+    max-width: 40%;
+    margin-left: auto;
+    font-family: Roboto;
+}
+
+/*--------------------------------------*/
