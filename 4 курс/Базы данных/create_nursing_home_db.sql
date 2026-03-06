@@ -1,137 +1,146 @@
 -- ============================================
 -- Скрипт создания БД "Дом Пристарелых"
+-- Имена таблиц и столбцов на латинице (без русских символов)
 -- ============================================
 
 -- Создание базы данных (раскомментируйте при необходимости)
--- CREATE DATABASE [Дом_Пристарелых];
+-- CREATE DATABASE NursingHome;
 -- GO
--- USE [Дом_Пристарелых];
+-- USE NursingHome;
 -- GO
 
 -- Справочники (таблицы без зависимостей)
 -- ============================================
 
-CREATE TABLE [Тип процедуры] (
-    [ID Тип процедуры] INT IDENTITY(1,1) NOT NULL,
-    [Название процедуры] NVARCHAR(200) NOT NULL,
-    [Описание] NVARCHAR(MAX) NULL,
-    CONSTRAINT PK_Тип_процедуры PRIMARY KEY ([ID Тип процедуры])
+-- Тип процедуры
+CREATE TABLE ProcedureType (
+    id INT IDENTITY(1,1) NOT NULL,
+    procedure_name NVARCHAR(200) NOT NULL,
+    description NVARCHAR(MAX) NULL,
+    CONSTRAINT PK_ProcedureType PRIMARY KEY (id)
 );
 
-CREATE TABLE [Способ оплаты] (
-    [ID Способ оплаты] INT IDENTITY(1,1) NOT NULL,
-    [Способ оплаты] NVARCHAR(100) NOT NULL,
-    CONSTRAINT PK_Способ_оплаты PRIMARY KEY ([ID Способ оплаты])
+-- Способ оплаты
+CREATE TABLE PaymentMethod (
+    id INT IDENTITY(1,1) NOT NULL,
+    method_name NVARCHAR(100) NOT NULL,
+    CONSTRAINT PK_PaymentMethod PRIMARY KEY (id)
 );
 
-CREATE TABLE [Тип родства] (
-    [ID Тип родства] INT IDENTITY(1,1) NOT NULL,
-    [Тип родства] NVARCHAR(100) NOT NULL,
-    CONSTRAINT PK_Тип_родства PRIMARY KEY ([ID Тип родства])
+-- Тип родства
+CREATE TABLE RelationshipType (
+    id INT IDENTITY(1,1) NOT NULL,
+    relationship_name NVARCHAR(100) NOT NULL,
+    CONSTRAINT PK_RelationshipType PRIMARY KEY (id)
 );
 
-CREATE TABLE [Должность] (
-    [ID Должность] INT IDENTITY(1,1) NOT NULL,
-    [Должность] NVARCHAR(100) NOT NULL,
-    CONSTRAINT PK_Должность PRIMARY KEY ([ID Должность])
+-- Должность
+CREATE TABLE Position (
+    id INT IDENTITY(1,1) NOT NULL,
+    position_name NVARCHAR(100) NOT NULL,
+    CONSTRAINT PK_Position PRIMARY KEY (id)
 );
 
-CREATE TABLE [График работы] (
-    [ID График работы] INT IDENTITY(1,1) NOT NULL,
-    [График работы] NVARCHAR(200) NOT NULL,
-    CONSTRAINT PK_График_работы PRIMARY KEY ([ID График работы])
+-- График работы
+CREATE TABLE WorkSchedule (
+    id INT IDENTITY(1,1) NOT NULL,
+    schedule_name NVARCHAR(200) NOT NULL,
+    CONSTRAINT PK_WorkSchedule PRIMARY KEY (id)
 );
 
-CREATE TABLE [Комнаты] (
-    [ID Комнаты] INT IDENTITY(1,1) NOT NULL,
-    [Номер комнаты] NVARCHAR(20) NOT NULL,
-    [Этаж] INT NOT NULL,
-    [Вместимость] INT NOT NULL,
-    CONSTRAINT PK_Комнаты PRIMARY KEY ([ID Комнаты])
+-- Комнаты
+CREATE TABLE Room (
+    id INT IDENTITY(1,1) NOT NULL,
+    room_number NVARCHAR(20) NOT NULL,
+    floor INT NOT NULL,
+    capacity INT NOT NULL,
+    CONSTRAINT PK_Room PRIMARY KEY (id)
 );
 
-CREATE TABLE [Состояния здоровья] (
-    [ID Состояния здоровье] INT IDENTITY(1,1) NOT NULL,
-    [Состояние здоровья] NVARCHAR(200) NOT NULL,
-    CONSTRAINT PK_Состояния_здоровья PRIMARY KEY ([ID Состояния здоровье])
+-- Состояния здоровья
+CREATE TABLE HealthStatus (
+    id INT IDENTITY(1,1) NOT NULL,
+    status_name NVARCHAR(200) NOT NULL,
+    CONSTRAINT PK_HealthStatus PRIMARY KEY (id)
 );
 
-CREATE TABLE [Пол] (
-    [ID Пол] INT IDENTITY(1,1) NOT NULL,
-    [Пол] NVARCHAR(50) NOT NULL,
-    CONSTRAINT PK_Пол PRIMARY KEY ([ID Пол])
+-- Пол
+CREATE TABLE Gender (
+    id INT IDENTITY(1,1) NOT NULL,
+    gender_name NVARCHAR(50) NOT NULL,
+    CONSTRAINT PK_Gender PRIMARY KEY (id)
 );
 
--- Таблица сотрудников (зависит от Должность, График работы)
+-- Сотрудники (зависит от Должность, График работы)
 -- ============================================
 
-CREATE TABLE [Сотрудники] (
-    [ID Сотрудника] INT IDENTITY(1,1) NOT NULL,
-    [Фамилия] NVARCHAR(100) NOT NULL,
-    [Имя] NVARCHAR(100) NOT NULL,
-    [Отчество] NVARCHAR(100) NULL,
-    [Дата рождения] DATE NOT NULL,
-    [ID Должность] INT NOT NULL,
-    [Телефон] NVARCHAR(20) NULL,
-    [Дата приема на работу] DATE NOT NULL,
-    [ID График работы] INT NOT NULL,
-    CONSTRAINT PK_Сотрудники PRIMARY KEY ([ID Сотрудника]),
-    CONSTRAINT FK_Сотрудники_Должность FOREIGN KEY ([ID Должность]) REFERENCES [Должность]([ID Должность]),
-    CONSTRAINT FK_Сотрудники_График_работы FOREIGN KEY ([ID График работы]) REFERENCES [График работы]([ID График работы])
+CREATE TABLE Employee (
+    id INT IDENTITY(1,1) NOT NULL,
+    last_name NVARCHAR(100) NOT NULL,
+    first_name NVARCHAR(100) NOT NULL,
+    middle_name NVARCHAR(100) NULL,
+    birth_date DATE NOT NULL,
+    position_id INT NOT NULL,
+    phone NVARCHAR(20) NULL,
+    hire_date DATE NOT NULL,
+    work_schedule_id INT NOT NULL,
+    CONSTRAINT PK_Employee PRIMARY KEY (id),
+    CONSTRAINT FK_Employee_Position FOREIGN KEY (position_id) REFERENCES Position(id),
+    CONSTRAINT FK_Employee_WorkSchedule FOREIGN KEY (work_schedule_id) REFERENCES WorkSchedule(id)
 );
 
--- Таблица жильцов (зависит от Комнаты, Состояния здоровья, Пол)
+-- Жильцы (зависит от Комнаты, Состояния здоровья, Пол)
 -- ============================================
 
-CREATE TABLE [Жильцы] (
-    [ID Жильцы] INT IDENTITY(1,1) NOT NULL,
-    [Фамилия] NVARCHAR(100) NOT NULL,
-    [Имя] NVARCHAR(100) NOT NULL,
-    [Отчество] NVARCHAR(100) NULL,
-    [Дата рождения] DATE NOT NULL,
-    [Дата заселения] DATE NOT NULL,
-    [ID Комнаты] INT NOT NULL,
-    [ID Состояния здоровье] INT NOT NULL,
-    [ID Пол] INT NOT NULL,
-    CONSTRAINT PK_Жильцы PRIMARY KEY ([ID Жильцы]),
-    CONSTRAINT FK_Жильцы_Комнаты FOREIGN KEY ([ID Комнаты]) REFERENCES [Комнаты]([ID Комнаты]),
-    CONSTRAINT FK_Жильцы_Состояния_здоровья FOREIGN KEY ([ID Состояния здоровье]) REFERENCES [Состояния здоровья]([ID Состояния здоровье]),
-    CONSTRAINT FK_Жильцы_Пол FOREIGN KEY ([ID Пол]) REFERENCES [Пол]([ID Пол])
+CREATE TABLE Resident (
+    id INT IDENTITY(1,1) NOT NULL,
+    last_name NVARCHAR(100) NOT NULL,
+    first_name NVARCHAR(100) NOT NULL,
+    middle_name NVARCHAR(100) NULL,
+    birth_date DATE NOT NULL,
+    move_in_date DATE NOT NULL,
+    room_id INT NOT NULL,
+    health_status_id INT NOT NULL,
+    gender_id INT NOT NULL,
+    CONSTRAINT PK_Resident PRIMARY KEY (id),
+    CONSTRAINT FK_Resident_Room FOREIGN KEY (room_id) REFERENCES Room(id),
+    CONSTRAINT FK_Resident_HealthStatus FOREIGN KEY (health_status_id) REFERENCES HealthStatus(id),
+    CONSTRAINT FK_Resident_Gender FOREIGN KEY (gender_id) REFERENCES Gender(id)
 );
 
--- Таблицы с операционными данными (зависимости от жильцов/сотрудников)
+-- Медицинские процедуры, Платежи, Посещения
 -- ============================================
 
-CREATE TABLE [Медицинские процедуры] (
-    [ID Медицинские процедуры] INT IDENTITY(1,1) NOT NULL,
-    [ID Типа процедуры] INT NOT NULL,
-    [Дата процедуры] DATETIME NOT NULL,
-    [ID Сотрудника] INT NOT NULL,
-    [ID Жильца] INT NOT NULL,
-    CONSTRAINT PK_Медицинские_процедуры PRIMARY KEY ([ID Медицинские процедуры]),
-    CONSTRAINT FK_МедПроцедуры_Тип_процедуры FOREIGN KEY ([ID Типа процедуры]) REFERENCES [Тип процедуры]([ID Тип процедуры]),
-    CONSTRAINT FK_МедПроцедуры_Сотрудник FOREIGN KEY ([ID Сотрудника]) REFERENCES [Сотрудники]([ID Сотрудника]),
-    CONSTRAINT FK_МедПроцедуры_Жилец FOREIGN KEY ([ID Жильца]) REFERENCES [Жильцы]([ID Жильцы])
+CREATE TABLE MedicalProcedure (
+    id INT IDENTITY(1,1) NOT NULL,
+    procedure_type_id INT NOT NULL,
+    procedure_date DATETIME NOT NULL,
+    employee_id INT NOT NULL,
+    resident_id INT NOT NULL,
+    CONSTRAINT PK_MedicalProcedure PRIMARY KEY (id),
+    CONSTRAINT FK_MedicalProcedure_Type FOREIGN KEY (procedure_type_id) REFERENCES ProcedureType(id),
+    CONSTRAINT FK_MedicalProcedure_Employee FOREIGN KEY (employee_id) REFERENCES Employee(id),
+    CONSTRAINT FK_MedicalProcedure_Resident FOREIGN KEY (resident_id) REFERENCES Resident(id)
 );
 
-CREATE TABLE [Платежи] (
-    [ID Платежи] INT IDENTITY(1,1) NOT NULL,
-    [Дата платежа] DATETIME NOT NULL,
-    [Сумма] DECIMAL(18,2) NOT NULL,
-    [ID Способа оплаты] INT NOT NULL,
-    [ID Жильца] INT NOT NULL,
-    CONSTRAINT PK_Платежи PRIMARY KEY ([ID Платежи]),
-    CONSTRAINT FK_Платежи_Способ_оплаты FOREIGN KEY ([ID Способа оплаты]) REFERENCES [Способ оплаты]([ID Способ оплаты]),
-    CONSTRAINT FK_Платежи_Жилец FOREIGN KEY ([ID Жильца]) REFERENCES [Жильцы]([ID Жильцы])
+CREATE TABLE Payment (
+    id INT IDENTITY(1,1) NOT NULL,
+    payment_date DATETIME NOT NULL,
+    amount DECIMAL(18,2) NOT NULL,
+    payment_method_id INT NOT NULL,
+    resident_id INT NOT NULL,
+    CONSTRAINT PK_Payment PRIMARY KEY (id),
+    CONSTRAINT FK_Payment_Method FOREIGN KEY (payment_method_id) REFERENCES PaymentMethod(id),
+    CONSTRAINT FK_Payment_Resident FOREIGN KEY (resident_id) REFERENCES Resident(id)
 );
 
-CREATE TABLE [Посещения] (
-    [ID Посещения] INT IDENTITY(1,1) NOT NULL,
-    [Имя посетителя] NVARCHAR(200) NOT NULL,
-    [ID Тип родства] INT NOT NULL,
-    [Дата посещения] DATETIME NOT NULL,
-    [ID Жильца] INT NOT NULL,
-    CONSTRAINT PK_Посещения PRIMARY KEY ([ID Посещения]),
-    CONSTRAINT FK_Посещения_Тип_родства FOREIGN KEY ([ID Тип родства]) REFERENCES [Тип родства]([ID Тип родства]),
-    CONSTRAINT FK_Посещения_Жилец FOREIGN KEY ([ID Жильца]) REFERENCES [Жильцы]([ID Жильцы])
+CREATE TABLE Visit (
+    id INT IDENTITY(1,1) NOT NULL,
+    visitor_name NVARCHAR(200) NOT NULL,
+    relationship_type_id INT NOT NULL,
+    visit_date DATETIME NOT NULL,
+    resident_id INT NOT NULL,
+    CONSTRAINT PK_Visit PRIMARY KEY (id),
+    CONSTRAINT FK_Visit_RelationshipType FOREIGN KEY (relationship_type_id) REFERENCES RelationshipType(id),
+    CONSTRAINT FK_Visit_Resident FOREIGN KEY (resident_id) REFERENCES Resident(id)
 );
