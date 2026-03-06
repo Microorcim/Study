@@ -14,7 +14,7 @@
 
 -- Тип процедуры
 CREATE TABLE ProcedureType (
-    id INT IDENTITY(1,1) NOT NULL,
+    id INT AUTO_INCREMENT NOT NULL,
     procedure_name NVARCHAR(200) NOT NULL,
     description NVARCHAR(MAX) NULL,
     CONSTRAINT PK_ProcedureType PRIMARY KEY (id)
@@ -22,35 +22,35 @@ CREATE TABLE ProcedureType (
 
 -- Способ оплаты
 CREATE TABLE PaymentMethod (
-    id INT IDENTITY(1,1) NOT NULL,
+    id INT AUTO_INCREMENT NOT NULL,
     method_name NVARCHAR(100) NOT NULL,
     CONSTRAINT PK_PaymentMethod PRIMARY KEY (id)
 );
 
 -- Тип родства
 CREATE TABLE RelationshipType (
-    id INT IDENTITY(1,1) NOT NULL,
+    id INT AUTO_INCREMENT NOT NULL,
     relationship_name NVARCHAR(100) NOT NULL,
     CONSTRAINT PK_RelationshipType PRIMARY KEY (id)
 );
 
 -- Должность
 CREATE TABLE Position (
-    id INT IDENTITY(1,1) NOT NULL,
+    id INT AUTO_INCREMENT NOT NULL,
     position_name NVARCHAR(100) NOT NULL,
     CONSTRAINT PK_Position PRIMARY KEY (id)
 );
 
 -- График работы
 CREATE TABLE WorkSchedule (
-    id INT IDENTITY(1,1) NOT NULL,
+    id INT AUTO_INCREMENT NOT NULL,
     schedule_name NVARCHAR(200) NOT NULL,
     CONSTRAINT PK_WorkSchedule PRIMARY KEY (id)
 );
 
 -- Комнаты
 CREATE TABLE Room (
-    id INT IDENTITY(1,1) NOT NULL,
+    id INT AUTO_INCREMENT NOT NULL,
     room_number NVARCHAR(20) NOT NULL,
     floor INT NOT NULL,
     capacity INT NOT NULL,
@@ -59,14 +59,14 @@ CREATE TABLE Room (
 
 -- Состояния здоровья
 CREATE TABLE HealthStatus (
-    id INT IDENTITY(1,1) NOT NULL,
+    id INT AUTO_INCREMENT NOT NULL,
     status_name NVARCHAR(200) NOT NULL,
     CONSTRAINT PK_HealthStatus PRIMARY KEY (id)
 );
 
 -- Пол
 CREATE TABLE Gender (
-    id INT IDENTITY(1,1) NOT NULL,
+    id INT AUTO_INCREMENT NOT NULL,
     gender_name NVARCHAR(50) NOT NULL,
     CONSTRAINT PK_Gender PRIMARY KEY (id)
 );
@@ -75,7 +75,7 @@ CREATE TABLE Gender (
 -- ============================================
 
 CREATE TABLE Employee (
-    id INT IDENTITY(1,1) NOT NULL,
+    id INT AUTO_INCREMENT NOT NULL,
     last_name NVARCHAR(100) NOT NULL,
     first_name NVARCHAR(100) NOT NULL,
     middle_name NVARCHAR(100) NULL,
@@ -93,7 +93,7 @@ CREATE TABLE Employee (
 -- ============================================
 
 CREATE TABLE Resident (
-    id INT IDENTITY(1,1) NOT NULL,
+    id INT AUTO_INCREMENT NOT NULL,
     last_name NVARCHAR(100) NOT NULL,
     first_name NVARCHAR(100) NOT NULL,
     middle_name NVARCHAR(100) NULL,
@@ -112,7 +112,7 @@ CREATE TABLE Resident (
 -- ============================================
 
 CREATE TABLE MedicalProcedure (
-    id INT IDENTITY(1,1) NOT NULL,
+    id INT AUTO_INCREMENT NOT NULL,
     procedure_type_id INT NOT NULL,
     procedure_date DATETIME NOT NULL,
     employee_id INT NOT NULL,
@@ -124,7 +124,7 @@ CREATE TABLE MedicalProcedure (
 );
 
 CREATE TABLE Payment (
-    id INT IDENTITY(1,1) NOT NULL,
+    id INT AUTO_INCREMENT NOT NULL,
     payment_date DATETIME NOT NULL,
     amount DECIMAL(18,2) NOT NULL,
     payment_method_id INT NOT NULL,
@@ -135,7 +135,7 @@ CREATE TABLE Payment (
 );
 
 CREATE TABLE Visit (
-    id INT IDENTITY(1,1) NOT NULL,
+    id INT AUTO_INCREMENT NOT NULL,
     visitor_name NVARCHAR(200) NOT NULL,
     relationship_type_id INT NOT NULL,
     visit_date DATETIME NOT NULL,
