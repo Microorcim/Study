@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Корзина — SportShop</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container header__inner">
+      <a href="index.html" class="logo">SportShop</a>
+      <nav class="nav" id="nav">
+        <a href="index.html" class="nav__link">Главная</a>
+        <a href="catalog.html" class="nav__link">Каталог</a>
+        <a href="about.html" class="nav__link">О магазине</a>
+        <a href="contacts.html" class="nav__link">Контакты</a>
+        <a href="cart.html" class="nav__link nav__link--active nav__link--cart">
+          Корзина <span class="cart-count" id="headerCartCount">0</span>
+        </a>
+      </nav>
+      <button class="burger" id="burger" aria-label="Меню">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main class="main--cart">
+    <div class="container">
+      <nav class="breadcrumbs">
+        <a href="index.html">Главная</a>
+        <span class="breadcrumbs__sep">/</span>
+        <span>Корзина</span>
+      </nav>
+
+      <h1 class="page-title">Корзина</h1>
+
+      <div class="cart-empty hidden" id="cartEmpty">
+        <p>В корзине пока ничего нет.</p>
+        <a href="catalog.html" class="btn btn--primary">Перейти в каталог</a>
+      </div>
+
+      <div class="cart-content" id="cartContent">
+        <div class="cart-list" id="cartList">
+          <!-- заполняется JS -->
+        </div>
+        <aside class="cart-summary">
+          <div class="cart-summary__total">
+            <span>Итого:</span>
+            <strong id="cartTotal">0 ₽</strong>
+          </div>
+          <a href="checkout.html" class="btn btn--primary btn--block btn--lg">Оформить заказ</a>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p class="footer__copy">© 2025 SportShop. Учебный проект по Web-технологиям.</p>
+      <a href="admin-login.html" class="footer__admin">Вход для администратора</a>
+    </div>
+  </footer>
+
+  <script src="js/storage.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/cart.js"></script>
+</body>
+</html>

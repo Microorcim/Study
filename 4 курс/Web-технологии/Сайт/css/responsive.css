@@ -1,0 +1,156 @@
+/* Адаптивность — планшет и мобильные */
+
+@media (max-width: 992px) {
+  .catalog-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .filters {
+    position: static;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .filters__block:nth-child(5) {
+    grid-column: 1 / -1;
+  }
+
+  .product-detail {
+    grid-template-columns: 1fr;
+  }
+
+  .cart-content {
+    grid-template-columns: 1fr;
+  }
+
+  .cart-summary {
+    position: static;
+  }
+
+  .checkout-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .checkout-summary {
+    position: static;
+    order: -1;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 280px;
+    height: 100vh;
+    background: var(--color-white);
+    flex-direction: column;
+    align-items: stretch;
+    padding: 80px 24px 24px;
+    box-shadow: -4px 0 20px rgba(0,0,0,0.1);
+    transform: translateX(100%);
+    transition: transform 0.3s;
+    z-index: 99;
+  }
+
+  .nav--open {
+    transform: translateX(0);
+  }
+
+  .burger {
+    display: flex;
+    z-index: 101;
+    position: relative;
+  }
+
+  .hero {
+    padding: 40px 0;
+  }
+
+  .hero__title {
+    font-size: 1.5rem;
+  }
+
+  .section {
+    padding: 32px 0;
+  }
+
+  .products-grid {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 16px;
+  }
+
+  .categories-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .filters {
+    grid-template-columns: 1fr;
+  }
+
+  .cart-item {
+    grid-template-columns: 80px 1fr;
+    grid-template-rows: auto auto auto;
+  }
+
+  .cart-item__img {
+    width: 80px;
+    height: 80px;
+    grid-row: 1 / 4;
+  }
+
+  .cart-item__info {
+    grid-column: 2;
+  }
+
+  .cart-item__qty {
+    grid-column: 1 / -1;
+  }
+
+  .cart-item__remove {
+    grid-column: 2;
+    justify-self: start;
+  }
+
+  .success-block {
+    padding: 32px 20px;
+  }
+
+  .success-block__actions {
+    flex-direction: column;
+  }
+
+  .success-block__actions .btn {
+    width: 100%;
+  }
+
+  .footer__inner {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 12px;
+  }
+
+  .products-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .product-detail__actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .product-detail__qty {
+    justify-content: space-between;
+  }
+
+  .product-detail__qty .input {
+    width: 80px;
+  }
+}

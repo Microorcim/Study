@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Заказ оформлен — SportShop</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container header__inner">
+      <a href="index.html" class="logo">SportShop</a>
+      <nav class="nav" id="nav">
+        <a href="index.html" class="nav__link">Главная</a>
+        <a href="catalog.html" class="nav__link">Каталог</a>
+        <a href="about.html" class="nav__link">О магазине</a>
+        <a href="contacts.html" class="nav__link">Контакты</a>
+        <a href="cart.html" class="nav__link nav__link--cart">
+          Корзина <span class="cart-count" id="headerCartCount">0</span>
+        </a>
+      </nav>
+      <button class="burger" id="burger" aria-label="Меню">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main class="main--success">
+    <div class="container">
+      <div class="success-block" id="successBlock">
+        <div class="success-block__icon">✓</div>
+        <h1 class="success-block__title">Заказ успешно оформлен!</h1>
+        <p class="success-block__text">Номер вашего заказа: <strong id="orderId">—</strong></p>
+        <p class="success-block__info" id="orderInfo"></p>
+        <div class="success-block__actions">
+          <a href="catalog.html" class="btn btn--primary">Перейти в каталог</a>
+          <a href="index.html" class="btn btn--outline">На главную</a>
+        </div>
+      </div>
+      <div class="success-block success-block--empty hidden" id="successEmpty">
+        <p>Информация о заказе недоступна.</p>
+        <a href="index.html" class="btn btn--primary">На главную</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p class="footer__copy">© 2025 SportShop. Учебный проект по Web-технологиям.</p>
+      <a href="admin-login.html" class="footer__admin">Вход для администратора</a>
+    </div>
+  </footer>
+
+  <script src="js/storage.js"></script>
+  <script src="js/utils.js"></script>
+  <script>
+    (function() {
+      const params = new URLSearchParams(window.location.search);
+      const orderId = params.get('order');
+      const total = params.get('total');
+      const headerCount = document.getElementById('headerCartCount');
+      if (headerCount) headerCount.textContent = getCart().length ? getCart().reduce((s, i) => s + i.quantity, 0) : '0';
+
+      const block = document.getElementById('successBlock');
+      const empty = document.getElementById('successEmpty');
+      if (orderId) {
+        document.getElementById('orderId').textContent = orderId;
+        if (total) document.getElementById('orderInfo').textContent = 'Сумма заказа: ' + total;
+        block.classList.remove('hidden');
+      } else {
+        block.classList.add('hidden');
+        empty.classList.remove('hidden');
+      }
+
+      document.getElementById('burger')?.addEventListener('click', function() {
+        document.getElementById('nav').classList.toggle('nav--open');
+      });
+    })();
+  </script>
+</body>
+</html>

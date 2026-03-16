@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SportShop — Интернет-магазин спортивных товаров</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container header__inner">
+      <a href="index.html" class="logo">SportShop</a>
+      <nav class="nav" id="nav">
+        <a href="index.html" class="nav__link nav__link--active">Главная</a>
+        <a href="catalog.html" class="nav__link">Каталог</a>
+        <a href="about.html" class="nav__link">О магазине</a>
+        <a href="contacts.html" class="nav__link">Контакты</a>
+        <a href="cart.html" class="nav__link nav__link--cart">
+          Корзина <span class="cart-count" id="headerCartCount">0</span>
+        </a>
+      </nav>
+      <button class="burger" id="burger" aria-label="Меню">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" style="background-image: url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1200&h=600&fit=crop');">
+      <div class="hero__overlay"></div>
+      <div class="container hero__inner">
+        <h1 class="hero__title">Спортивные товары для вас</h1>
+        <p class="hero__text">Одежда, обувь, инвентарь и экипировка от известных брендов. Доставка по всей России.</p>
+        <a href="catalog.html" class="btn btn--primary btn--lg">Перейти в каталог</a>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2 class="section__title">Категории</h2>
+        <div class="categories-grid" id="categoriesGrid">
+          <!-- заполняется JS -->
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt">
+      <div class="container">
+        <h2 class="section__title">Популярные товары</h2>
+        <div class="products-grid" id="featuredProducts">
+          <!-- заполняется JS -->
+        </div>
+        <p class="section__more">
+          <a href="catalog.html" class="btn btn--outline">Смотреть весь каталог</a>
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2 class="section__title">Почему мы</h2>
+        <ul class="advantages">
+          <li class="advantages__item">
+            <span class="advantages__icon">✓</span>
+            <strong>Широкий ассортимент</strong> — более 30 категорий товаров
+          </li>
+          <li class="advantages__item">
+            <span class="advantages__icon">✓</span>
+            <strong>Доставка</strong> — по России и СНГ
+          </li>
+          <li class="advantages__item">
+            <span class="advantages__icon">✓</span>
+            <strong>Гарантия качества</strong> — только сертифицированные товары
+          </li>
+          <li class="advantages__item">
+            <span class="advantages__icon">✓</span>
+            <strong>Поддержка</strong> — консультация по выбору
+          </li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p class="footer__copy">© 2025 SportShop. Учебный проект по Web-технологиям.</p>
+      <a href="admin-login.html" class="footer__admin">Вход для администратора</a>
+    </div>
+  </footer>
+
+  <div id="toast-container"></div>
+  <script src="js/storage.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
