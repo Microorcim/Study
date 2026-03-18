@@ -23,6 +23,47 @@ function setFooterYear() {
     }
 }
 
+function initHeroVisual() {
+    const visual = document.querySelector(".hero-visual");
+    if (!visual) return;
+
+    const reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduceMotion) return;
+
+    visual.classList.add("hero-visual-interactive");
+
+    let rafId = 0;
+    let lastX = 0;
+    let lastY = 0;
+
+    function setVars() {
+        rafId = 0;
+        visual.style.setProperty("--hx", String(lastX));
+        visual.style.setProperty("--hy", String(lastY));
+    }
+
+    function onMove(ev) {
+        const rect = visual.getBoundingClientRect();
+        const x = (ev.clientX - rect.left) / rect.width;
+        const y = (ev.clientY - rect.top) / rect.height;
+
+        // -1..1
+        lastX = Math.max(-1, Math.min(1, (x - 0.5) * 2));
+        lastY = Math.max(-1, Math.min(1, (y - 0.5) * 2));
+
+        if (!rafId) rafId = requestAnimationFrame(setVars);
+    }
+
+    function onLeave() {
+        lastX = 0;
+        lastY = 0;
+        if (!rafId) rafId = requestAnimationFrame(setVars);
+    }
+
+    visual.addEventListener("pointermove", onMove, { passive: true });
+    visual.addEventListener("pointerleave", onLeave, { passive: true });
+}
+
 // Неблокирующие уведомления вместо alert/confirm
 function showToast(message) {
     let container = document.querySelector(".toast-container");
@@ -760,6 +801,8 @@ document.addEventListener("DOMContentLoaded", () => {
         { threshold: 0.12 }
     );
     revealElements.forEach((el) => observer.observe(el));
+
+    initHeroVisual();
 
     initHomePage();
     initCatalogPage();

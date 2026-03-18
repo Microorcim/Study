@@ -11,8 +11,16 @@
         }
         .admin-grid {
             display: grid;
-            grid-template-columns: minmax(0, 2fr) minmax(0, 1.4fr);
+            grid-template-columns: minmax(0, 2.2fr) minmax(320px, 1fr);
             gap: 24px;
+            align-items: start;
+        }
+        .admin-sidebar {
+            grid-column: 2;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            align-self: start;
         }
         .admin-card {
             background: #FFFFFF;
@@ -123,80 +131,6 @@
             </p>
             <div class="admin-grid">
                 <div class="admin-card">
-                    <h2>Категории</h2>
-                    <table class="admin-table" id="admin-categories-table">
-                        <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Наименование</th>
-                            <th>Действия</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <!-- Заполняется через JS -->
-                        </tbody>
-                    </table>
-                    <h2 style="margin-top: 14px;">Добавить / изменить категорию</h2>
-                    <form id="admin-category-form" class="admin-form">
-                        <input type="hidden" name="id" id="admin-category-id">
-                        <label>
-                            Наименование категории
-                            <input type="text" name="name" id="admin-category-name" required>
-                        </label>
-                        <label>
-                            Описание
-                            <textarea name="description" id="admin-category-description" rows="2"></textarea>
-                        </label>
-                        <div class="admin-actions">
-                            <button type="submit" class="btn btn-primary">Сохранить категорию</button>
-                            <button type="button" class="btn btn-ghost" id="admin-category-reset">Очистить</button>
-                        </div>
-                    </form>
-                    <h2 style="margin-top: 18px;">Добавить / изменить товар</h2>
-                    <form id="admin-product-form" class="admin-form">
-                        <input type="hidden" name="id" id="admin-product-id">
-                        <label>
-                            Категория
-                            <select name="category_id" id="admin-product-category" required></select>
-                        </label>
-                        <label>
-                            Наименование товара
-                            <input type="text" name="name" id="admin-product-name" required>
-                        </label>
-                        <label>
-                            Цена
-                            <input type="number" name="price" id="admin-product-price" min="0" step="0.01" required>
-                        </label>
-                        <label>
-                            Краткое описание
-                            <textarea name="short_desc" id="admin-product-short" rows="2"></textarea>
-                        </label>
-                        <label>
-                            Полное описание
-                            <textarea name="full_desc" id="admin-product-full" rows="3"></textarea>
-                        </label>
-                        <label>
-                            Характеристики
-                            <textarea name="features" id="admin-product-features" rows="2"></textarea>
-                        </label>
-                        <label>
-                            Имя файла изображения (из папки images)
-                            <input type="text" name="image" id="admin-product-image">
-                        </label>
-                        <label>
-                            Наличие
-                            <select name="in_stock" id="admin-product-stock">
-                                <option value="1">В наличии</option>
-                                <option value="0">Нет в наличии</option>
-                            </select>
-                        </label>
-                        <div class="admin-actions">
-                            <button type="submit" class="btn btn-primary">Сохранить товар</button>
-                            <button type="button" class="btn btn-ghost" id="admin-product-reset">Очистить</button>
-                        </div>
-                    </form>
-                </div>
-                <div class="admin-card">
                     <h2>Товары</h2>
                     <div class="admin-actions" style="margin-bottom: 8px;">
                         <input type="text" id="admin-products-search" placeholder="Поиск по названию или описанию" style="flex:1; border-radius:10px; border:1px solid #D1D5DB; padding:6px 8px; font-size:13px;">
@@ -219,6 +153,85 @@
                     </table>
                     <div id="admin-products-pagination" style="margin-top: 10px; display: flex; justify-content: space-between; align-items: center; font-size: 12px;">
                         <!-- Пагинация заполняется через JS -->
+                    </div>
+                </div>
+                <div class="admin-sidebar">
+                    <div class="admin-card reveal reveal-visible">
+                        <h2 style="margin-top: 0;">Добавить / изменить товар</h2>
+                        <form id="admin-product-form" class="admin-form">
+                            <input type="hidden" name="id" id="admin-product-id">
+                            <label>
+                                Категория
+                                <select name="category_id" id="admin-product-category" required></select>
+                            </label>
+                            <label>
+                                Наименование товара
+                                <input type="text" name="name" id="admin-product-name" required>
+                            </label>
+                            <label>
+                                Цена
+                                <input type="number" name="price" id="admin-product-price" min="0" step="0.01" required>
+                            </label>
+                            <label>
+                                Краткое описание
+                                <textarea name="short_desc" id="admin-product-short" rows="2"></textarea>
+                            </label>
+                            <label>
+                                Полное описание
+                                <textarea name="full_desc" id="admin-product-full" rows="3"></textarea>
+                            </label>
+                            <label>
+                                Характеристики
+                                <textarea name="features" id="admin-product-features" rows="2"></textarea>
+                            </label>
+                            <label>
+                                Имя файла изображения (из папки images)
+                                <input type="text" name="image" id="admin-product-image">
+                            </label>
+                            <label>
+                                Наличие
+                                <select name="in_stock" id="admin-product-stock">
+                                    <option value="1">В наличии</option>
+                                    <option value="0">Нет в наличии</option>
+                                </select>
+                            </label>
+                            <div class="admin-actions">
+                                <button type="submit" class="btn btn-primary">Сохранить товар</button>
+                                <button type="button" class="btn btn-ghost" id="admin-product-reset">Очистить</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="admin-card reveal reveal-visible">
+                        <h2 style="margin-top: 0;">Категории</h2>
+                        <table class="admin-table" id="admin-categories-table">
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Наименование</th>
+                                <th>Действия</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <!-- Заполняется через JS -->
+                            </tbody>
+                        </table>
+                        <h2 style="margin-top: 14px;">Добавить / изменить категорию</h2>
+                        <form id="admin-category-form" class="admin-form">
+                            <input type="hidden" name="id" id="admin-category-id">
+                            <label>
+                                Наименование категории
+                                <input type="text" name="name" id="admin-category-name" required>
+                            </label>
+                            <label>
+                                Описание
+                                <textarea name="description" id="admin-category-description" rows="2"></textarea>
+                            </label>
+                            <div class="admin-actions">
+                                <button type="submit" class="btn btn-primary">Сохранить категорию</button>
+                                <button type="button" class="btn btn-ghost" id="admin-category-reset">Очистить</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
