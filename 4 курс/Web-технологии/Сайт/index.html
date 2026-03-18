@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>SportStore — Интернет-магазин спортивных товаров</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="site-header">
+    <div class="container header-inner">
+        <a href="index.html" class="logo">
+            <span class="logo-mark">Sport</span><span class="logo-accent">Store</span>
+        </a>
+        <nav class="main-nav">
+            <a href="catalog.html">Каталог</a>
+            <a href="catalog.html?popular=1">Популярное</a>
+            <a href="catalog.html?new=1">Новинки</a>
+        </nav>
+        <div class="header-actions">
+            <form class="search-form" action="catalog.html">
+                <input type="text" name="q" placeholder="Поиск по товарам..." required>
+                <button type="submit">Найти</button>
+            </form>
+            <a href="cart.html" class="icon-button cart-link">Корзина</a>
+        </div>
+    </div>
+</header>
+<main class="site-main">
+    <section class="hero hero-home">
+        <div class="container hero-inner">
+            <div class="hero-content">
+                <span class="hero-super">Онлайн‑магазин экипировки</span>
+                <h1>Спорт начинается<br>с правильной экипировки</h1>
+                <p>Подберите всё для тренировок, бега, фитнеса и зимних видов спорта в одном современном каталоге. Быстрая навигация, удобная корзина и наглядные карточки товаров.</p>
+                <div class="hero-actions">
+                    <a href="catalog.html" class="btn btn-primary">В каталог</a>
+                    <a href="catalog.html?popular=1" class="btn btn-outline">Топ товары</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <span class="hero-stat-number">20+</span>
+                        <span class="hero-stat-label">категорий товаров</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="hero-stat-number">100%</span>
+                        <span class="hero-stat-label">актуальные остатки</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="hero-stat-number">24/7</span>
+                        <span class="hero-stat-label">доступ к каталогу</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-orbit">
+                    <div class="hero-orbit-ring hero-orbit-ring-lg"></div>
+                    <div class="hero-orbit-ring hero-orbit-ring-md"></div>
+                    <div class="hero-orbit-card hero-orbit-card-top">
+                        <span class="hero-orbit-label">Бег</span>
+                        <span class="hero-orbit-text">Кроссовки и одежда</span>
+                    </div>
+                    <div class="hero-orbit-card hero-orbit-card-right">
+                        <span class="hero-orbit-label">Фитнес</span>
+                        <span class="hero-orbit-text">Гантели, коврики, инвентарь</span>
+                    </div>
+                    <div class="hero-orbit-card hero-orbit-card-bottom">
+                        <span class="hero-orbit-label">Зима</span>
+                        <span class="hero-orbit-text">Лыжи, сноуборды, защита</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-alt">
+        <div class="container home-categories">
+            <div class="home-category-card">
+                <div class="home-category-tag">Для тренировок</div>
+                <h2>Фитнес и зал</h2>
+                <p>Домашние тренировки или зал — соберите комплект из гантелей, коврика, эспандеров и скакалки.</p>
+                <a href="catalog.html?category=2" class="home-category-link">Открыть раздел</a>
+            </div>
+            <div class="home-category-card">
+                <div class="home-category-tag">Для улицы</div>
+                <h2>Бег и кардио</h2>
+                <p>Кроссовки, одежда и аксессуары для комфортных пробежек в любое время года.</p>
+                <a href="catalog.html?category=3" class="home-category-link">Подобрать экипировку</a>
+            </div>
+            <div class="home-category-card">
+                <div class="home-category-tag">Сезон</div>
+                <h2>Зимние виды спорта</h2>
+                <p>Снаряжение для горных лыж и сноуборда — от шлемов до масок и комплектов.</p>
+                <a href="catalog.html?category=5" class="home-category-link">К зимнему сезону</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Популярные товары</h2>
+            <div id="popular-products" class="product-grid" data-section="popular">
+                <!-- Загружается через JS из PHP-API -->
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">Новые поступления</h2>
+            <div id="new-products" class="product-grid" data-section="new">
+                <!-- Загружается через JS из PHP-API -->
+            </div>
+        </div>
+    </section>
+</main>
+<footer class="site-footer">
+    <div class="container footer-inner">
+        <div class="footer-column">
+            <div class="logo footer-logo">
+                <span class="logo-mark">Sport</span><span class="logo-accent">Store</span>
+            </div>
+            <p class="footer-text">Современный интернет-магазин спортивных товаров.</p>
+        </div>
+        <div class="footer-column">
+            <h4>Навигация</h4>
+            <a href="index.html">Главная</a>
+            <a href="catalog.html">Каталог</a>
+            <a href="cart.html">Корзина</a>
+        </div>
+        <div class="footer-column">
+            <h4>Контакты</h4>
+            <p>Email: info@sportstore.local</p>
+            <p>Телефон: +7 (900) 000-00-00</p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="container">
+            <p>© <span id="footer-year"></span> SportStore. Все права защищены.</p>
+        </div>
+    </div>
+</footer>
+<script src="script.js"></script>
+</body>
+</html>
+
