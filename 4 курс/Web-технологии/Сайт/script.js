@@ -16,6 +16,76 @@ function formatPrice(value) {
     return number.toLocaleString("ru-RU", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + " ₽";
 }
 
+function normalizeImagePath(path) {
+    if (!path) return "";
+    const p = String(path);
+    if (p.startsWith("data:") || p.startsWith("http://") || p.startsWith("https://")) return p;
+    // В БД иногда хранится "images/..." — тогда не добавляем префикс повторно
+    if (p.startsWith("images/")) return p;
+    return "images/" + p;
+}
+
+function productPlaceholderDataUri(name) {
+    const safeName = String(name || "Товар").slice(0, 44);
+    const svg = `
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#EFF6FF"/>
+      <stop offset="0.6" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#FFF7ED"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#2563EB"/>
+      <stop offset="1" stop-color="#F97316"/>
+    </linearGradient>
+    <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="14" stdDeviation="18" flood-color="#0F172A" flood-opacity="0.10"/>
+    </filter>
+  </defs>
+  <rect width="800" height="600" rx="28" fill="url(#bg)"/>
+  <path d="M0,420 C180,360 250,520 410,470 C560,422 620,300 800,360 L800,600 L0,600 Z" fill="#EEF2FF"/>
+  <path d="M0,470 C210,420 280,570 460,520 C610,478 650,350 800,420 L800,600 L0,600 Z" fill="#FFEDD5"/>
+  <circle cx="620" cy="170" r="120" fill="url(#accent)" opacity="0.18"/>
+  <circle cx="180" cy="140" r="92" fill="url(#accent)" opacity="0.12"/>
+  <g filter="url(#soft)">
+    <rect x="92" y="208" width="616" height="200" rx="22" fill="#FFFFFF"/>
+  </g>
+  <rect x="120" y="228" width="92" height="10" rx="6" fill="url(#accent)"/>
+  <text x="120" y="290" font-family="system-ui, -apple-system, Segoe UI, Arial" font-size="30" font-weight="800" fill="#111827">
+    ${safeName.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")}
+  </text>
+  <text x="120" y="334" font-family="system-ui, -apple-system, Segoe UI, Arial" font-size="16" font-weight="600" fill="#4B5563">
+    SportStore • спортивные товары
+  </text>
+  <g opacity="0.85">
+    <path d="M135 388 C210 348, 300 350, 365 390 C430 430, 520 430, 610 385" fill="none" stroke="url(#accent)" stroke-width="10" stroke-linecap="round"/>
+    <path d="M140 388 C225 405, 295 405, 360 390" fill="none" stroke="#2563EB" stroke-width="4" stroke-linecap="round" opacity="0.35"/>
+  </g>
+</svg>`;
+    return "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg.trim());
+}
+
+function createProductImage(imgPath, name) {
+    const img = new Image();
+    const placeholder = productPlaceholderDataUri(name);
+    let normalized = normalizeImagePath(imgPath);
+    if (!normalized) {
+        const n = String(name || "").toLowerCase();
+        if (n.includes("asics") && n.includes("gel")) normalized = "images/asics_gel.jpg";
+        else if (n.includes("футбол")) normalized = "images/running_tshirt.jpg";
+        else if (n.includes("шорт")) normalized = "images/running_shorts.jpg";
+    }
+    img.src = normalized || placeholder;
+    img.alt = String(name || "Товар");
+    img.loading = "lazy";
+    img.decoding = "async";
+    img.onerror = () => {
+        if (img.src !== placeholder) img.src = placeholder;
+    };
+    return img;
+}
+
 function setFooterYear() {
     const el = document.getElementById("footer-year");
     if (el) {
@@ -256,13 +326,7 @@ async function initProductPage() {
         wrapper.className = "product-detail";
         wrapper.innerHTML = `
             <div class="product-detail-grid">
-                <div class="product-detail-image">
-                    ${
-                        product.Изображение
-                            ? `<img src="images/${encodeURIComponent(product.Изображение)}" alt="${product.Наименование_товара}">`
-                            : '<div class="product-placeholder">Нет изображения</div>'
-                    }
-                </div>
+                <div class="product-detail-image" id="product-detail-image"></div>
                 <div class="product-detail-info">
                     <h1>${product.Наименование_товара}</h1>
                     <p class="product-detail-price">${formatPrice(product.Цена)}</p>
@@ -284,6 +348,12 @@ async function initProductPage() {
         `;
         productPage.innerHTML = "";
         productPage.appendChild(wrapper);
+
+        const imgHost = document.getElementById("product-detail-image");
+        if (imgHost) {
+            imgHost.innerHTML = "";
+            imgHost.appendChild(createProductImage(product.Изображение, product.Наименование_товара));
+        }
 
         // Похожие товары из той же категории
         if (product.ID_категории) {
@@ -361,30 +431,49 @@ async function renderProductGrid(container, products, options = { allowSuggestio
     for (const p of products) {
         const article = document.createElement("article");
         article.className = "product-card";
-        article.innerHTML = `
-            <div class="product-image-wrapper">
-                ${
-                    p.Изображение
-                        ? `<img src="images/${encodeURIComponent(p.Изображение)}" alt="${p.Наименование_товара}">`
-                        : '<div class="product-placeholder">Нет изображения</div>'
-                }
-            </div>
-            <h3 class="product-title">
-                <a href="product.html?id=${encodeURIComponent(String(p.ID_товара))}">
-                    ${p.Наименование_товара}
-                </a>
-            </h3>
-            <p class="product-price">${formatPrice(p.Цена)}</p>
-            <p class="product-excerpt">${p.Краткое_описание || ""}</p>
-            <form class="product-actions">
-                <input type="hidden" name="product_id" value="${p.ID_товара}">
-                <button type="button" class="btn btn-primary">В корзину</button>
-                <a href="product.html?id=${encodeURIComponent(String(p.ID_товара))}" class="btn btn-ghost">Подробнее</a>
-            </form>
-        `;
+        const imageWrapper = document.createElement("div");
+        imageWrapper.className = "product-image-wrapper";
+        imageWrapper.appendChild(createProductImage(p.Изображение, p.Наименование_товара));
 
-        const addBtn = article.querySelector("button.btn-primary");
-        const hiddenId = article.querySelector('input[name="product_id"]');
+        const title = document.createElement("h3");
+        title.className = "product-title";
+        const link = document.createElement("a");
+        link.href = "product.html?id=" + encodeURIComponent(String(p.ID_товара));
+        link.textContent = p.Наименование_товара;
+        title.appendChild(link);
+
+        const price = document.createElement("p");
+        price.className = "product-price";
+        price.textContent = formatPrice(p.Цена);
+
+        const excerpt = document.createElement("p");
+        excerpt.className = "product-excerpt";
+        excerpt.textContent = p.Краткое_описание || "";
+
+        const actions = document.createElement("form");
+        actions.className = "product-actions";
+        const hiddenId = document.createElement("input");
+        hiddenId.type = "hidden";
+        hiddenId.name = "product_id";
+        hiddenId.value = String(p.ID_товара);
+        const addBtn = document.createElement("button");
+        addBtn.type = "button";
+        addBtn.className = "btn btn-primary";
+        addBtn.textContent = "В корзину";
+        const more = document.createElement("a");
+        more.className = "btn btn-ghost";
+        more.href = link.href;
+        more.textContent = "Подробнее";
+        actions.appendChild(hiddenId);
+        actions.appendChild(addBtn);
+        actions.appendChild(more);
+
+        article.appendChild(imageWrapper);
+        article.appendChild(title);
+        article.appendChild(price);
+        article.appendChild(excerpt);
+        article.appendChild(actions);
+
         addBtn.addEventListener("click", () => {
             const id = Number(hiddenId.value);
             addToCart(id, 1);
